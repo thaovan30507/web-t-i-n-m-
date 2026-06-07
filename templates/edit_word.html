@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Sửa từ vựng</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Sửa từ vựng</h2>
+
+    <form method="POST">
+
+        <div class="mb-3">
+            <label>Từ tiếng Anh</label>
+            <input type="text" name="english_word"
+                   class="form-control"
+                   value="{{ word.english_word }}">
+        </div>
+
+        <div class="mb-3">
+            <label>Phiên âm</label>
+            <input type="text" name="phonetics"
+                   class="form-control"
+                   value="{{ word.phonetics }}">
+        </div>
+
+        <div class="mb-3">
+            <label>Từ loại</label>
+            <input type="text" name="word_type"
+                   class="form-control"
+                   value="{{ word.word_type }}">
+        </div>
+
+        <div class="mb-3">
+            <label>Nghĩa tiếng Việt</label>
+            <textarea name="vietnamese_meaning"
+                      class="form-control">{{ word.vietnamese_meaning }}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label>Ví dụ</label>
+            <textarea name="example_sentence"
+                      class="form-control">{{ word.example_sentence }}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Cập nhật
+        </button>
+
+        <a href="/" class="btn btn-secondary">
+            Quay lại
+        </a>
+
+    </form>
+</div>
+
+</body>
+</html>
