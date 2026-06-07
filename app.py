@@ -26,7 +26,7 @@ def seed_data():
                 db.session.add(admin_user)
                 db.session.commit() 
 
-            # Đọc file CSV (Đã sửa tên cột chính xác theo file word.csv)
+            # Đọc file CSV 
             with open('word.csv', mode='r', encoding='utf-8-sig') as file:
                 csv_reader = csv.DictReader(file)
                 for row in csv_reader:
@@ -44,7 +44,7 @@ def seed_data():
         except Exception as e:
             print(f"Lỗi khi đọc file CSV hoặc nạp Database: {e}")
 
-# --- 1. ROUTE TRANG CHỦ & TÌM KIẾM ---
+#ROUTE TRANG CHỦ & TÌM KIẾM
 @app.route('/')
 def index():
     search_query = request.args.get('search', '').strip()
@@ -58,7 +58,7 @@ def index():
         
     return render_template('index.html', words=words, search_query=search_query)
 
-# --- 2. TÍNH NĂNG ĐĂNG KÝ ---
+#TÍNH NĂNG ĐĂNG KÝ
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -79,7 +79,7 @@ def register():
         
     return render_template('register.html')
 
-# --- 3. TÍNH NĂNG ĐĂNG NHẬP ---
+#TÍNH NĂNG ĐĂNG NHẬP
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -97,14 +97,14 @@ def login():
             
     return render_template('login.html')
 
-# --- 4. TÍNH NĂNG ĐĂNG XUẤT ---
+# TÍNH NĂNG ĐĂNG XUẤT 
 @app.route('/logout')
 def logout():
     session.clear() 
     flash('Bạn đã đăng xuất thành công.', 'info')
     return redirect(url_for('index'))
 
-# --- 5. TÍNH NĂNG THÊM TỪ MỚI ---
+#TÍNH NĂNG THÊM TỪ MỚI 
 @app.route('/add', methods=['GET', 'POST'])
 def add_word():
     if 'user_id' not in session:
@@ -147,7 +147,7 @@ def add_word():
             flash(f"Đã xảy ra lỗi khi thêm từ: {e}", 'danger')
 
     return render_template('add_word.html')
-# --- 6. SỬA TỪ VỰNG ---
+#SỬA TỪ VỰNG
 @app.route('/edit/<int:id>', methods=['GET', 'POST'])
 def edit_word(id):
 
@@ -171,7 +171,7 @@ def edit_word(id):
 
     return render_template('edit_word.html', word=word)
 
-# --- 7. XÓA TỪ VỰNG ---
+# XÓA TỪ VỰNG
 @app.route('/delete/<int:id>')
 def delete_word(id):
 
